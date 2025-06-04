@@ -5,6 +5,8 @@ VisualStudioVersion = 17.13.35828.75
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicineCareBridge.Client", "MedicineCareBridge.Client\MedicineCareBridge.Client.csproj", "{A7578DA9-65A4-4E74-A053-CEC4E634DCA2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{4A186A47-A33A-425F-8254-143DA6A7F61E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{A7578DA9-65A4-4E74-A053-CEC4E634DCA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7578DA9-65A4-4E74-A053-CEC4E634DCA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7578DA9-65A4-4E74-A053-CEC4E634DCA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A186A47-A33A-425F-8254-143DA6A7F61E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A186A47-A33A-425F-8254-143DA6A7F61E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A186A47-A33A-425F-8254-143DA6A7F61E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A186A47-A33A-425F-8254-143DA6A7F61E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
