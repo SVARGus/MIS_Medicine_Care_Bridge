@@ -44,14 +44,17 @@
                     <TextBox x:Name="UsernameTextBox"
                              Text="{Binding User.Login, UpdateSourceTrigger=PropertyChanged}"
                              Height="30"
-                             Margin="0,0,0,5"/>
+                             Margin="0,0,0,5"
+                             TextAlignment="Center"/>
 
                     <TextBlock Text="Пароль" FontWeight="SemiBold"/>
                     
                     <PasswordBox x:Name="PasswordBox"
                                  Height="30"
                                  Margin="0,0,0,10"
-                                 PasswordChanged="PasswordBox_PasswordChanged"/>
+                                 PasswordChanged="PasswordBox_PasswordChanged"
+                                 HorizontalContentAlignment="Center"
+                                 VerticalAlignment="Center"/>
 
                     <Button x:Name="LoginButton"
                             Content="Войти"
