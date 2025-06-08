@@ -4,11 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MedicineCareBridge.Client.Views.Admin"
+             xmlns:header="clr-namespace:MedicineCareBridge.Client.Views.HeaderPanel"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
     <UserControl.Resources>
-        <!-- Стиль зелёной кнопки -->
+        
         <Style x:Key="GreenButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="#4CAF50"/>
             <Setter Property="Foreground" Value="White"/>
@@ -56,11 +57,9 @@
      
         <Border Background="White" CornerRadius="10" Padding="20" BorderBrush="#CCCCCC" BorderThickness="1">
             <DockPanel>
-                <TextBlock Text="Панель администратора"
-                           FontSize="24"
-                           FontWeight="Bold"
-                           Margin="0,0,0,10"
-                           DockPanel.Dock="Top" />
+                
+                <header:HeaderPanelUserControl
+                    DockPanel.Dock="Top"/>
 
                 <TabControl>
                     
