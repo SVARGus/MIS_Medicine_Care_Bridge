@@ -7,8 +7,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
-   
-    
     <UserControl.Resources>
         <!-- Стиль зелёной кнопки -->
         <Style x:Key="GreenButtonStyle" TargetType="Button">
@@ -54,12 +52,8 @@
         </Style>
     </UserControl.Resources>
     
-
-
     <Grid Background="#F0F0F0" >
-        
-        
-        
+     
         <Border Background="White" CornerRadius="10" Padding="20" BorderBrush="#CCCCCC" BorderThickness="1">
             <DockPanel>
                 <TextBlock Text="Панель администратора"
@@ -104,13 +98,11 @@
                             </DataGrid>
                         </Grid>
                     </TabItem>
-
-                    
+         
                     <TabItem Header="Логи">
                         <TextBlock Text="Здесь будет отображение логов." VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </TabItem>
 
-                   
                     <TabItem Header="Настройки">
                         <TextBlock Text="Здесь будут настройки системы." VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </TabItem>
