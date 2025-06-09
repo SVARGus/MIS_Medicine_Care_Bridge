@@ -37,7 +37,7 @@ namespace MedicineCareBridge.Client.ViewModels.Admin
         {
 
             //LoadUsers();
-            GenerateUsers(1000000);
+            GenerateUsers(1000);
 
             AddUserCommand = new RelayCommand(AddUser);
             EditUserCommand = new RelayCommand(EditUser, () => SelectedUser != null);
