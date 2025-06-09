@@ -76,6 +76,7 @@
                             </Grid.RowDefinitions>
 
                             <DataGrid Grid.Row="0"
+                                      ItemsSource="{Binding Users}"
                                       Name="UsersDataGrid"
                                       AutoGenerateColumns="False"
                                       CanUserAddRows="False"
@@ -96,10 +97,10 @@
                             </DataGrid>
 
                             <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0">
-                                <Button Content="Добавить" Width="80" Height="30" Style="{StaticResource GreenButtonStyle}" />
-                                <Button Content="Изменить" Width="80" Height="30" Style="{StaticResource GreenButtonStyle}" />
-                                <Button Content="Удалить" Width="80" Height="30" Style="{StaticResource GreenButtonStyle}" />
-                                <Button Content="Сброс пароля" Width="110" Height="30" Style="{StaticResource GreenButtonStyle}" Margin="0" />
+                                <Button Content="Добавить" Command="{Binding AddCommand}" Width="80" Height="30" Style="{StaticResource GreenButtonStyle}" />
+                                <Button Content="Изменить" Command="{Binding EditCommand}" Width="80" Height="30" Style="{StaticResource GreenButtonStyle}" />
+                                <Button Content="Удалить" Command="{Binding DeleteCommand}" Width="80" Height="30" Style="{StaticResource GreenButtonStyle}" />
+                                <Button Content="Сброс пароля" Command="{Binding ResetPasswordCommand}" Width="110" Height="30" Style="{StaticResource GreenButtonStyle}" />
                             </StackPanel>
                         </Grid>
                     </TabItem>

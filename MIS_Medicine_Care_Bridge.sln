@@ -3,10 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.13.35828.75
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicineCareBridge.DataAccess", "DataAccess\MedicineCareBridge.DataAccess.csproj", "{2E60164F-E0F2-488F-BFC9-761FE7DCF3C1}"
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicineCareBridge.Client", "MedicineCareBridge.Client\MedicineCareBridge.Client.csproj", "{A7578DA9-65A4-4E74-A053-CEC4E634DCA2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicineCareBridge.DataAccess", "DataAccess\MedicineCareBridge.DataAccess.csproj", "{2E60164F-E0F2-488F-BFC9-761FE7DCF3C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{4A186A47-A33A-425F-8254-143DA6A7F61E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicineCareBridge.Client", "MedicineCareBridge.Client\MedicineCareBridge.Client.csproj", "{A7578DA9-65A4-4E74-A053-CEC4E634DCA2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{4A186A47-A33A-425F-8254-143DA6A7F61E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicineCareBridge.Shared", "MedicineCareBridge.Shared\MedicineCareBridge.Shared.csproj", "{135BDBFE-40A7-4843-AD4A-DA6130B0F1AF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,6 +29,10 @@ Global
 		{4A186A47-A33A-425F-8254-143DA6A7F61E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A186A47-A33A-425F-8254-143DA6A7F61E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A186A47-A33A-425F-8254-143DA6A7F61E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{135BDBFE-40A7-4843-AD4A-DA6130B0F1AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{135BDBFE-40A7-4843-AD4A-DA6130B0F1AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{135BDBFE-40A7-4843-AD4A-DA6130B0F1AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{135BDBFE-40A7-4843-AD4A-DA6130B0F1AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

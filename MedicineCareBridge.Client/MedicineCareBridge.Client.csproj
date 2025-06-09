@@ -19,6 +19,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MedicineCareBridge.Shared\MedicineCareBridge.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Resources\img\logo.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
