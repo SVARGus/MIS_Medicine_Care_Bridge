@@ -17,6 +17,7 @@ namespace MedicineCareBridge.Client.ViewModels.Admin
     {
         //ЗАГЛУШКА!
         private readonly AdminPanelServiceStub _adminService = new AdminPanelServiceStub();
+       
 
         public ObservableCollection<UserDto> Users { get; set; } = new();
 
@@ -26,7 +27,7 @@ namespace MedicineCareBridge.Client.ViewModels.Admin
             get => _selectedUser;
             set { _selectedUser = value; OnPropertyChanged(); }
         }
-
+        
         public ICommand AddUserCommand { get; }
         public ICommand EditUserCommand { get; }
         public ICommand DeleteUserCommand { get; }
@@ -34,13 +35,21 @@ namespace MedicineCareBridge.Client.ViewModels.Admin
 
         public AdminPanelViewModel()
         {
-            
-            LoadUsers();
+
+            //LoadUsers();
+            GenerateUsers(1000000);
 
             AddUserCommand = new RelayCommand(AddUser);
             EditUserCommand = new RelayCommand(EditUser, () => SelectedUser != null);
             DeleteUserCommand = new RelayCommand(DeleteUser, () => SelectedUser != null);
             ResetPasswordCommand = new RelayCommand(ResetPassword, () => SelectedUser != null);
+           
+        }
+
+        private void GenerateUsers(int count)
+        {
+            _adminService.GenerateAndLoadUsers(count);
+            LoadUsers();
         }
 
         private void LoadUsers()
