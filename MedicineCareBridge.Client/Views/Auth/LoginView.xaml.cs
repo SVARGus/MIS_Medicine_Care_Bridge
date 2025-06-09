@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MedicineCareBridge.Client.ViewModels.Auth;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,15 @@ namespace MedicineCareBridge.Client.Views.Auth
         public LoginView()
         {
             InitializeComponent();
+            DataContext = new LoginViewModel();
+        }
+
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (DataContext is LoginViewModel viewModel)
+            {
+                viewModel.User.Password = ((PasswordBox)sender).Password;
+            }
         }
     }
 }

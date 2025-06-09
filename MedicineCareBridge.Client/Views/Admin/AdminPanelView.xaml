@@ -1,0 +1,118 @@
+﻿<UserControl x:Class="MedicineCareBridge.Client.Views.Admin.AdminPanelView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MedicineCareBridge.Client.Views.Admin"
+             xmlns:header="clr-namespace:MedicineCareBridge.Client.Views.HeaderPanel"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        
+        <Style x:Key="GreenButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#4CAF50"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Margin" Value="0,0,10,0"/>
+            <Setter Property="Padding" Value="10,0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+
+        <Style TargetType="TabItem">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Padding" Value="10,4"/>
+            <Setter Property="Margin" Value="2,0,2,0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabItem">
+                        <Border Name="Bd"
+                        Background="#1976D2"
+                        BorderThickness="0"
+                        Padding="{TemplateBinding Padding}"
+                        Margin="{TemplateBinding Margin}">
+                            <ContentPresenter x:Name="ContentSite"
+                                      VerticalAlignment="Center"
+                                      HorizontalAlignment="Center"
+                                      ContentSource="Header"
+                                      RecognizesAccessKey="True"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="#4CAF50"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Foreground" Value="Gray"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    
+    <Grid Background="#F0F0F0" >
+     
+        <Border Background="White" CornerRadius="10" Padding="20" BorderBrush="#CCCCCC" BorderThickness="0">
+            <DockPanel>
+                
+                <header:HeaderPanelUserControl
+                    DockPanel.Dock="Top"/>
+
+                <TabControl Margin="0,10,0,0"
+                            BorderThickness="1"
+                            Background="Transparent">
+
+                    <TabItem Header="Пользователи"
+                             >
+                        <Grid Margin="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                               
+                                <RowDefinition Height="Auto" />
+                                
+                            </Grid.RowDefinitions>
+
+                            <DataGrid Grid.Row="0"
+                                      Name="UsersDataGrid"
+                                      AutoGenerateColumns="False"
+                                      CanUserAddRows="False"
+                                      IsReadOnly="True"
+                                      HeadersVisibility="Column"
+                                      BorderThickness="0"
+                                      BorderBrush="Transparent"
+                                      GridLinesVisibility="None"
+                                      Background="Transparent"
+                                      Margin="0,0,0,10">    
+                                >
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Логин" Binding="{Binding Login}" Width="*" />
+                                    <DataGridTextColumn Header="ФИО" Binding="{Binding FullName}" Width="2*" />
+                                    <DataGridTextColumn Header="Роль" Binding="{Binding Role}" Width="*" />
+                                    <DataGridTextColumn Header="Последний вход" Binding="{Binding LastLogin}" Width="*" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+
+                            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0">
+                                <Button Content="Добавить" Width="80" Height="30" Style="{StaticResource GreenButtonStyle}" />
+                                <Button Content="Изменить" Width="80" Height="30" Style="{StaticResource GreenButtonStyle}" />
+                                <Button Content="Удалить" Width="80" Height="30" Style="{StaticResource GreenButtonStyle}" />
+                                <Button Content="Сброс пароля" Width="110" Height="30" Style="{StaticResource GreenButtonStyle}" Margin="0" />
+                            </StackPanel>
+                        </Grid>
+                    </TabItem>
+
+                    <TabItem Header="Логи">
+                        <TextBlock Text="Здесь будет отображение логов." VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </TabItem>
+
+                    <TabItem Header="Настройки">
+                        <TextBlock Text="Здесь будут настройки системы." VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </TabItem>
+                </TabControl>
+            </DockPanel>
+        </Border>
+    </Grid>
+</UserControl>
