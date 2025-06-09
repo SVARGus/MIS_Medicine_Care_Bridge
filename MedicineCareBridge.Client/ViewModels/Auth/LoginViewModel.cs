@@ -39,6 +39,8 @@ namespace MedicineCareBridge.Client.ViewModels.Auth
 
         private void Login()
         {
+
+            //заглушка
             if (User.Login == "admin" && User.Password == "1234")
             {
                 ErrorVisibility = Visibility.Collapsed;

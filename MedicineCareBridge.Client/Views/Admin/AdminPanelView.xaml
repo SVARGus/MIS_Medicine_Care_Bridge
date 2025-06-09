@@ -55,39 +55,38 @@
     
     <Grid Background="#F0F0F0" >
      
-        <Border Background="White" CornerRadius="10" Padding="20" BorderBrush="#CCCCCC" BorderThickness="1">
+        <Border Background="White" CornerRadius="10" Padding="20" BorderBrush="#CCCCCC" BorderThickness="0">
             <DockPanel>
                 
                 <header:HeaderPanelUserControl
                     DockPanel.Dock="Top"/>
 
-                <TabControl>
-                    
-                    <TabItem Header="Пользователи">
+                <TabControl Margin="0,10,0,0"
+                            BorderThickness="1"
+                            Background="Transparent">
+
+                    <TabItem Header="Пользователи"
+                             >
                         <Grid Margin="10">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*" />
+                               
+                                <RowDefinition Height="Auto" />
+                                
                             </Grid.RowDefinitions>
 
-                            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                                <Button Content="Добавить" Width="100" Margin="0,0,10,0"
-                                Background="#4CAF50" Foreground="White" FontWeight="Bold" Height="35"/>
-                                <Button Content="Изменить" Width="100" Margin="0,0,10,0"
-                                Background="#4CAF50" Foreground="White" FontWeight="Bold" Height="35"/>
-                                <Button Content="Удалить" Width="100" Margin="0,0,10,0"
-                                Background="#4CAF50" Foreground="White" FontWeight="Bold" Height="35"/>
-                                <Button Content="Сброс пароля" Width="120"
-                                Background="#4CAF50" Foreground="White" FontWeight="Bold" Height="35"/>
-                            </StackPanel>
-
-                            <DataGrid Grid.Row="1"
+                            <DataGrid Grid.Row="0"
                                       Name="UsersDataGrid"
                                       AutoGenerateColumns="False"
                                       CanUserAddRows="False"
                                       IsReadOnly="True"
                                       HeadersVisibility="Column"
-                                      Margin="0,10,0,0">
+                                      BorderThickness="0"
+                                      BorderBrush="Transparent"
+                                      GridLinesVisibility="None"
+                                      Background="Transparent"
+                                      Margin="0,0,0,10">    
+                                >
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="Логин" Binding="{Binding Login}" Width="*" />
                                     <DataGridTextColumn Header="ФИО" Binding="{Binding FullName}" Width="2*" />
@@ -95,9 +94,16 @@
                                     <DataGridTextColumn Header="Последний вход" Binding="{Binding LastLogin}" Width="*" />
                                 </DataGrid.Columns>
                             </DataGrid>
+
+                            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0">
+                                <Button Content="Добавить" Width="80" Height="30" Style="{StaticResource GreenButtonStyle}" />
+                                <Button Content="Изменить" Width="80" Height="30" Style="{StaticResource GreenButtonStyle}" />
+                                <Button Content="Удалить" Width="80" Height="30" Style="{StaticResource GreenButtonStyle}" />
+                                <Button Content="Сброс пароля" Width="110" Height="30" Style="{StaticResource GreenButtonStyle}" Margin="0" />
+                            </StackPanel>
                         </Grid>
                     </TabItem>
-         
+
                     <TabItem Header="Логи">
                         <TextBlock Text="Здесь будет отображение логов." VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </TabItem>
