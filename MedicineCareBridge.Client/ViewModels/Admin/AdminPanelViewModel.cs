@@ -1,4 +1,5 @@
 ﻿using MedicineCareBridge.Client.Helpers.Auth;
+using MedicineCareBridge.Client.TestStubs.Admin;
 using MedicineCareBridge.Shared.DTO.Admin;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,9 @@ namespace MedicineCareBridge.Client.ViewModels.Admin
 {
     public class AdminPanelViewModel : INotifyPropertyChanged
     {
+        //ЗАГЛУШКА!
+        private readonly AdminPanelServiceStub _adminService = new AdminPanelServiceStub();
+
         public ObservableCollection<UserDto> Users { get; set; } = new();
 
         private UserDto _selectedUser;
@@ -30,8 +34,8 @@ namespace MedicineCareBridge.Client.ViewModels.Admin
 
         public AdminPanelViewModel()
         {
-            // В будущем заменить на загрузку из API
-            Users.Add(new UserDto { Login = "admin", FullName = "Иван Иванов", Role = "Администратор", LastLogin = DateTime.Now });
+            
+            LoadUsers();
 
             AddUserCommand = new RelayCommand(AddUser);
             EditUserCommand = new RelayCommand(EditUser, () => SelectedUser != null);
@@ -39,7 +43,24 @@ namespace MedicineCareBridge.Client.ViewModels.Admin
             ResetPasswordCommand = new RelayCommand(ResetPassword, () => SelectedUser != null);
         }
 
-        private void AddUser() { /* логика */ }
+        private void LoadUsers()
+        {
+            Users.Clear();
+            foreach (var user in _adminService.GetAllUsers())
+                Users.Add(user);
+        }
+
+        private void AddUser() {
+            var newUser = new UserDto
+            {
+                Login = "newuser",
+                FullName = "Новый Пользователь",
+                Role = "Врач",
+                LastLogin = DateTime.Now
+            };
+            _adminService.AddUser(newUser);
+            LoadUsers();
+        }
         private void EditUser() { /* логика */ }
         private void DeleteUser() { /* логика */ }
         private void ResetPassword() { /* логика */ }

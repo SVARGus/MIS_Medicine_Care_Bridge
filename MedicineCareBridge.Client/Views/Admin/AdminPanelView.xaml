@@ -75,24 +75,21 @@
                                 
                             </Grid.RowDefinitions>
 
-                            <DataGrid Grid.Row="0"
-                                      ItemsSource="{Binding Users}"
-                                      Name="UsersDataGrid"
-                                      AutoGenerateColumns="False"
-                                      CanUserAddRows="False"
-                                      IsReadOnly="True"
-                                      HeadersVisibility="Column"
-                                      BorderThickness="0"
-                                      BorderBrush="Transparent"
-                                      GridLinesVisibility="None"
-                                      Background="Transparent"
-                                      Margin="0,0,0,10">    
-                                >
+                            <DataGrid ItemsSource="{Binding Users}"
+          AutoGenerateColumns="False"
+          CanUserAddRows="False"
+          IsReadOnly="True"
+          HeadersVisibility="Column"
+          BorderThickness="0"
+          BorderBrush="Transparent"
+          GridLinesVisibility="None"
+          Background="Transparent"
+          Margin="0,0,0,10">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Логин" Binding="{Binding Login}" Width="*" />
-                                    <DataGridTextColumn Header="ФИО" Binding="{Binding FullName}" Width="2*" />
-                                    <DataGridTextColumn Header="Роль" Binding="{Binding Role}" Width="*" />
-                                    <DataGridTextColumn Header="Последний вход" Binding="{Binding LastLogin}" Width="*" />
+                                    <DataGridTextColumn Header="Логин" Binding="{Binding Login}" />
+                                    <DataGridTextColumn Header="ФИО" Binding="{Binding FullName}" />
+                                    <DataGridTextColumn Header="Роль" Binding="{Binding Role}" />
+                                    <DataGridTextColumn Header="Последний вход" Binding="{Binding LastLogin}" />
                                 </DataGrid.Columns>
                             </DataGrid>
 
