@@ -18,7 +18,14 @@ namespace MedicineCareBridge.Client.Helpers.Auth
             _canExecute = canExecute;
         }
 
-       
+
+        public RelayCommand(Action execute, Func<bool>? canExecute = null)
+        {
+            _execute = _ => execute();
+            if (canExecute != null)
+                _canExecute = _ => canExecute();
+        }
+
         public event EventHandler? CanExecuteChanged
         {
             add => CommandManager.RequerySuggested += value;

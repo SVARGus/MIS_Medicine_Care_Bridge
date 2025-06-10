@@ -75,31 +75,29 @@
                                 
                             </Grid.RowDefinitions>
 
-                            <DataGrid Grid.Row="0"
-                                      Name="UsersDataGrid"
-                                      AutoGenerateColumns="False"
-                                      CanUserAddRows="False"
-                                      IsReadOnly="True"
-                                      HeadersVisibility="Column"
-                                      BorderThickness="0"
-                                      BorderBrush="Transparent"
-                                      GridLinesVisibility="None"
-                                      Background="Transparent"
-                                      Margin="0,0,0,10">    
-                                >
+                            <DataGrid ItemsSource="{Binding Users}"
+          AutoGenerateColumns="False"
+          CanUserAddRows="False"
+          IsReadOnly="True"
+          HeadersVisibility="Column"
+          BorderThickness="0"
+          BorderBrush="Transparent"
+          GridLinesVisibility="None"
+          Background="Transparent"
+          Margin="0,0,0,10">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Логин" Binding="{Binding Login}" Width="*" />
-                                    <DataGridTextColumn Header="ФИО" Binding="{Binding FullName}" Width="2*" />
-                                    <DataGridTextColumn Header="Роль" Binding="{Binding Role}" Width="*" />
-                                    <DataGridTextColumn Header="Последний вход" Binding="{Binding LastLogin}" Width="*" />
+                                    <DataGridTextColumn Header="Логин" Binding="{Binding Login}" />
+                                    <DataGridTextColumn Header="ФИО" Binding="{Binding FullName}" />
+                                    <DataGridTextColumn Header="Роль" Binding="{Binding Role}" />
+                                    <DataGridTextColumn Header="Последний вход" Binding="{Binding LastLogin}" />
                                 </DataGrid.Columns>
                             </DataGrid>
 
                             <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0">
-                                <Button Content="Добавить" Width="80" Height="30" Style="{StaticResource GreenButtonStyle}" />
-                                <Button Content="Изменить" Width="80" Height="30" Style="{StaticResource GreenButtonStyle}" />
-                                <Button Content="Удалить" Width="80" Height="30" Style="{StaticResource GreenButtonStyle}" />
-                                <Button Content="Сброс пароля" Width="110" Height="30" Style="{StaticResource GreenButtonStyle}" Margin="0" />
+                                <Button Content="Добавить" Command="{Binding AddCommand}" Width="80" Height="30" Style="{StaticResource GreenButtonStyle}" />
+                                <Button Content="Изменить" Command="{Binding EditCommand}" Width="80" Height="30" Style="{StaticResource GreenButtonStyle}" />
+                                <Button Content="Удалить" Command="{Binding DeleteCommand}" Width="80" Height="30" Style="{StaticResource GreenButtonStyle}" />
+                                <Button Content="Сброс пароля" Command="{Binding ResetPasswordCommand}" Width="110" Height="30" Style="{StaticResource GreenButtonStyle}" />
                             </StackPanel>
                         </Grid>
                     </TabItem>
