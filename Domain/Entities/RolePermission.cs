@@ -5,12 +5,29 @@
     /// </summary>
     public class RolePermission
     {
-        /// <summary>Внешний ключ на Role.Id</summary>
+        /// <summary>Внешний ключ на <see cref="Role.Id"/></summary>
         public int RoleId { get; private set; }
+        /// <summary>Навигационное свойство на <see cref="Role"/></summary>
         public Role Role { get; private set; } = default!;
 
-        /// <summary>Внешний ключ на Permission.Id</summary>
+        /// <summary>Внешний ключ на <see cref="Permission.Id"/></summary>
         public int PermissionId { get; private set; }
+        /// <summary>Навигационное свойство на <see cref="Permission"/></summary>
         public Permission Permission { get; private set; } = default!;
+
+        /// <summary>Конструктор для EF‑фреймворка.</summary>
+        private RolePermission() { }
+
+        /// <summary>
+        /// Инициализирует новый экземпляр <see cref="RolePermission"/>
+        /// для связи роли и права.
+        /// </summary>
+        /// <param name="roleId">Идентификатор роли.</param>
+        /// <param name="permissionId">Идентификатор права.</param>
+        public RolePermission(int roleId, int permissionId)
+        {
+            RoleId = roleId;
+            PermissionId = permissionId;
+        }
     }
 }

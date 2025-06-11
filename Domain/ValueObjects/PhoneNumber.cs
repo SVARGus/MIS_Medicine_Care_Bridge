@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿using System.Text.RegularExpressions;
 using Domain.Exceptions;
 
 namespace Domain.ValueObjects
@@ -26,6 +21,8 @@ namespace Domain.ValueObjects
     /// </remarks>
     public sealed class PhoneNumber
     {
+        private const string DigitsPattern = @"\D";
+
         /// <summary>
         /// Нормализованный номер телефона.
         /// </summary>
@@ -59,21 +56,16 @@ namespace Domain.ValueObjects
         /// </example>
         public PhoneNumber(string value)
         {
-            if (string.IsNullOrEmpty(value))
+            if (!IsValid(value))
             {
-                throw new DomainException("Телефон не может быть пустым или null.");
+                throw new DomainException($"Неверный формат номера телефона: '{value}'. Ожидается российский формат +7XXXXXXXXXX.");
             }
 
-            var digits = Regex.Replace(value, @"\D", "");
+            var digits = Regex.Replace(value!, DigitsPattern, "");
 
             if (digits.Length == 11 && digits.StartsWith("8"))
             {
                 digits = "7" + digits.Substring(1);
-            }
-
-            if (digits.Length != 11 || !digits.StartsWith("7"))
-            {
-                throw new DomainException($"Неверный формат номера телефона: '{value}'. Ожидается российский формат +7XXXXXXXXXX.");
             }
 
             Value = "+" + digits;
@@ -105,5 +97,39 @@ namespace Domain.ValueObjects
         /// Строковое значение PhoneNumber в формате, предоставленном при создании
         /// </returns>
         public override string ToString() => Value;
+
+        /// <summary>
+        /// Проверяет, можно ли нормализовать данную строку к корректному
+        /// российскому номеру <c>+7XXXXXXXXXX</c>.
+        /// </summary>
+        /// <param name="value">Исходная строка с номером телефона.</param>
+        /// <returns>
+        /// <c>true</c>, если <paramref name="value"/> не <c>null</c>, 
+        /// не пустая и после удаления всех не‑цифр её можно привести к виду +7XXXXXXXXXX;
+        /// иначе <c>false</c>.
+        /// </returns>
+        /// <example>
+        /// <code>
+        /// PhoneNumber.IsValid("+7 (921) 999-22-33"); // true
+        /// PhoneNumber.IsValid("89219992233");        // true
+        /// PhoneNumber.IsValid("12345");              // false
+        /// </code>
+        /// </example>
+        public static bool IsValid(string? value)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                return false;
+            }
+
+            var digits = Regex.Replace(value, DigitsPattern, "");
+
+            if (digits.Length == 11 && digits.StartsWith("8"))
+            {
+                digits = "7" + digits.Substring(1);
+            }
+
+            return digits.Length == 11 && digits.StartsWith("7");
+        }
     }
 }

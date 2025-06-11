@@ -20,6 +20,8 @@ namespace Domain.ValueObjects
     /// </remarks>
     public sealed class Email
     {
+        private const string Pattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+
         /// <summary>
         /// Строковое значение email-адреса
         /// </summary>
@@ -45,9 +47,9 @@ namespace Domain.ValueObjects
         /// </exception>
         public Email(string value)
         {
-            if (string.IsNullOrEmpty(value) || !Regex.IsMatch(value, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            if (!IsValid(value))
             {
-                throw new DomainException($"«{value}» не валидный email.");
+                throw new DomainException($"\"{value}\" не является валидным email-адресом.");
             }
             Value = value;
         }
@@ -78,5 +80,18 @@ namespace Domain.ValueObjects
         /// Строковое значение email в формате, предоставленном при создании
         /// </returns>
         public override string ToString() => Value;
+
+        /// <summary>
+        /// Проверяет, соответствует ли указанная строка корректному формату email.
+        /// </summary>
+        /// <param name="value">Тестируемая строка.</param>
+        /// <returns>
+        /// <c>true</c>, если <paramref name="value"/> не <c>null</c> и соответствует шаблону;
+        /// иначе <c>false</c>.
+        /// </returns>
+        public static bool IsValid(string? value)
+        {
+            return !string.IsNullOrEmpty(value) && Regex.IsMatch(value, Pattern);
+        }
     }
 }
