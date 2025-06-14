@@ -66,7 +66,7 @@ namespace MedicineCareBridge.Client.ViewModels.Admin
         public AdminPanelViewModel()
         {
             // Генерация 1000 пользователей при инициализации (для демонстрации)
-            GenerateUsers(1000);
+            GenerateUsers(100000);
 
             AddUserCommand = new RelayCommand(AddUser);
             EditUserCommand = new RelayCommand(EditUser, () => SelectedUser != null);
