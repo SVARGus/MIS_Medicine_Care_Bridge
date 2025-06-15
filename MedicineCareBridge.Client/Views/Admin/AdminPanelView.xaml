@@ -76,20 +76,31 @@
                             </Grid.RowDefinitions>
 
                             <DataGrid ItemsSource="{Binding Users}"
-          AutoGenerateColumns="False"
-          CanUserAddRows="False"
-          IsReadOnly="True"
-          HeadersVisibility="Column"
-          BorderThickness="0"
-          BorderBrush="Transparent"
-          GridLinesVisibility="None"
-          Background="Transparent"
-          Margin="0,0,0,10">
+                                      AutoGenerateColumns="False"
+                                      CanUserAddRows="False"
+                                      IsReadOnly="True"
+                                      HeadersVisibility="Column"
+                                      BorderThickness="0"
+                                      BorderBrush="Transparent"
+                                      GridLinesVisibility="None"
+                                      Background="Transparent"
+                                      Margin="0,0,0,10">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Логин" Binding="{Binding Login}" />
-                                    <DataGridTextColumn Header="ФИО" Binding="{Binding FullName}" />
-                                    <DataGridTextColumn Header="Роль" Binding="{Binding Role}" />
-                                    <DataGridTextColumn Header="Последний вход" Binding="{Binding LastLogin}" />
+                                    <DataGridTextColumn Header="Логин" Binding="{Binding Login}"
+                                                        Width="Auto" MinWidth="100"/>
+                                    <DataGridTextColumn Header="ФИО" Binding="{Binding FullName}"
+                                                        Width="Auto" MinWidth="300"/>
+                                    <DataGridTextColumn Header="Роль" Binding="{Binding Role}"
+                                                        Width="Auto" MinWidth="200"/>
+                                    <DataGridTemplateColumn Header="Последний вход"
+                                                            Width="*">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding LastLogin, StringFormat='{}{0:dd.MM.yyyy HH:mm}'}"
+                                                           />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
 
