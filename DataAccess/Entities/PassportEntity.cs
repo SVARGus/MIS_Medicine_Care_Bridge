@@ -7,9 +7,12 @@
     //[PrimaryKey(nameof(PassportNum))]
     public class PassportEntity
     {
+        /// <summary>Название документа, соответствет типу документа (на русском)</summary>
+        public string DocumentName { get; private set; } = string.Empty;
+
         /// <summary>Номер паспорта</summary>
         //[Column("passport_num")]
-        public int PassportNum { get; set; }
+        public string PassportNum { get; set; } = string.Empty;
 
         /// <summary>Внешний ключ на UserEntity.Id</summary>
         //[Column("user_id"), ForeignKey("users")]

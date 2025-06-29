@@ -11,7 +11,7 @@ namespace Domain.Entities
         public string DocumentName { get; private set; } = string.Empty;
 
         /// <summary>Номер или уникальный идентификатор документа</summary>
-        public string Num { get; private set; } = string.Empty; // Надо в остальных проектах поправить с int на string
+        public string PassportNum { get; private set; } = string.Empty;
 
         /// <summary>Внешний ключ на <see cref="User.Id"/></summary>
         public int UserId { get; private set; }
@@ -41,15 +41,15 @@ namespace Domain.Entities
         /// <param name="info">Дополнительная информация (не обязательна).</param>
         /// <param name="dateOfIssue">Дата выдачи (не позже текущей даты).</param>
         /// <param name="documentTypeId">Идентификатор типа документа</param>
-        public Passport(string documentName, string num, int userId, string info, DateTime dateOfIssue, int documentTypeId)
+        public Passport(string documentName, string passportNum, int userId, string info, DateTime dateOfIssue, int documentTypeId)
         {
             if (string.IsNullOrWhiteSpace(documentName))
             {
                 throw new DomainException("DocumentName не может быть пустым.");
             }
-            if (string.IsNullOrWhiteSpace(num))
+            if (string.IsNullOrWhiteSpace(passportNum))
             {
-                throw new DomainException("Num не может быть пустым.");
+                throw new DomainException("PassportNum не может быть пустым.");
             }
             if (dateOfIssue > DateTime.Now)
             {
@@ -65,7 +65,7 @@ namespace Domain.Entities
             }
 
             DocumentName = documentName;
-            Num = num;
+            PassportNum = passportNum;
             UserId = userId;
             Info = info;
             DateOfIssue = dateOfIssue;

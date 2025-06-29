@@ -11,7 +11,7 @@ namespace Domain.Entities
         public string DocumentName { get; private set; } = string.Empty;
 
         /// <summary>Номер или уникальный идентификатор документа</summary>
-        public int Num { get; private set; }
+        public string Num { get; private set; } = string.Empty;
 
         /// <summary>Внешний ключ на <see cref="User.Id"/></summary>
         public int UserId { get; private set; }

@@ -8,12 +8,19 @@ namespace MedicineCareBridge.DataAccess.Configurations
     {
         public void Configure(EntityTypeBuilder<PassportEntity> builder)
         {
+
             builder.ToTable("passports");
-            // Составной PK = (UserId, PassportNum) или можно PK по UserId только, если один паспорт на пользователя
-            builder.HasKey(p => new { p.UserId, p.PassportNum });
+            builder.HasKey(p => p.UserId);
+
+            builder.Property(p => p.DocumentName)
+                .HasColumnName("document_name")
+                .IsRequired()
+                .HasMaxLength(200);
 
             builder.Property(p => p.PassportNum)
-                .HasColumnName("passport_num");
+                .HasColumnName("passport_num")
+                .IsRequired()
+                .HasMaxLength(30);
 
             builder.Property(p => p.UserId)
                 .HasColumnName("user_id");
@@ -24,7 +31,7 @@ namespace MedicineCareBridge.DataAccess.Configurations
                 .HasMaxLength(200);
 
             builder.Property(p => p.DateOfIssue)
-                .HasColumnName("date_od_issue")
+                .HasColumnName("date_of_issue")
                 .IsRequired();
 
             builder.Property(ur => ur.DocumentTypeId)
