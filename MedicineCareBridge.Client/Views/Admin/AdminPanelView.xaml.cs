@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MedicineCareBridge.Client.ViewModels.Admin;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,14 +16,13 @@ using System.Windows.Shapes;
 
 namespace MedicineCareBridge.Client.Views.Admin
 {
-    /// <summary>
-    /// Логика взаимодействия для AdminPanelView.xaml
-    /// </summary>
+    
     public partial class AdminPanelView : UserControl
     {
         public AdminPanelView()
         {
             InitializeComponent();
+            this.DataContext = new AdminPanelViewModel();
         }
     }
 }

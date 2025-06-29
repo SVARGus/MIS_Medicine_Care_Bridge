@@ -15,7 +15,10 @@
   <ItemGroup>
     <Folder Include="Services\" />
     <Folder Include="Utilities\" />
-    <Folder Include="TestStubs\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MedicineCareBridge.Shared\MedicineCareBridge.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>

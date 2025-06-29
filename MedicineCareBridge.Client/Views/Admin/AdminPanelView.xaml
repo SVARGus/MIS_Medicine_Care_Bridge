@@ -75,8 +75,7 @@
                                 
                             </Grid.RowDefinitions>
 
-                            <DataGrid Grid.Row="0"
-                                      Name="UsersDataGrid"
+                            <DataGrid ItemsSource="{Binding Users}"
                                       AutoGenerateColumns="False"
                                       CanUserAddRows="False"
                                       IsReadOnly="True"
@@ -85,21 +84,31 @@
                                       BorderBrush="Transparent"
                                       GridLinesVisibility="None"
                                       Background="Transparent"
-                                      Margin="0,0,0,10">    
-                                >
+                                      Margin="0,0,0,10">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Логин" Binding="{Binding Login}" Width="*" />
-                                    <DataGridTextColumn Header="ФИО" Binding="{Binding FullName}" Width="2*" />
-                                    <DataGridTextColumn Header="Роль" Binding="{Binding Role}" Width="*" />
-                                    <DataGridTextColumn Header="Последний вход" Binding="{Binding LastLogin}" Width="*" />
+                                    <DataGridTextColumn Header="Логин" Binding="{Binding Login}"
+                                                        Width="Auto" MinWidth="100"/>
+                                    <DataGridTextColumn Header="ФИО" Binding="{Binding FullName}"
+                                                        Width="Auto" MinWidth="300"/>
+                                    <DataGridTextColumn Header="Роль" Binding="{Binding Role}"
+                                                        Width="Auto" MinWidth="200"/>
+                                    <DataGridTemplateColumn Header="Последний вход"
+                                                            Width="*">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding LastLogin, StringFormat='{}{0:dd.MM.yyyy HH:mm}'}"
+                                                           />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
 
                             <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0">
-                                <Button Content="Добавить" Width="80" Height="30" Style="{StaticResource GreenButtonStyle}" />
-                                <Button Content="Изменить" Width="80" Height="30" Style="{StaticResource GreenButtonStyle}" />
-                                <Button Content="Удалить" Width="80" Height="30" Style="{StaticResource GreenButtonStyle}" />
-                                <Button Content="Сброс пароля" Width="110" Height="30" Style="{StaticResource GreenButtonStyle}" Margin="0" />
+                                <Button Content="Добавить" Command="{Binding AddCommand}" Width="80" Height="30" Style="{StaticResource GreenButtonStyle}" />
+                                <Button Content="Изменить" Command="{Binding EditCommand}" Width="80" Height="30" Style="{StaticResource GreenButtonStyle}" />
+                                <Button Content="Удалить" Command="{Binding DeleteCommand}" Width="80" Height="30" Style="{StaticResource GreenButtonStyle}" />
+                                <Button Content="Сброс пароля" Command="{Binding ResetPasswordCommand}" Width="110" Height="30" Style="{StaticResource GreenButtonStyle}" />
                             </StackPanel>
                         </Grid>
                     </TabItem>
