@@ -7,9 +7,13 @@
     //[PrimaryKey(nameof(Num))]
     public class InsuranceDocumentEntity
     {
+        /// <summary>Название документа, соответствующее типу документа</summary>
+        //[Column("document_name")]
+        public string DocumentName { get; set; } = string.Empty;
+
         /// <summary>Номер страхового полиса (PRIMARY KEY или составной с UserId)</summary>
         //[Column("num")]
-        public int Num { get; set; }
+        public string Num { get; set; } = string.Empty;
 
         /// <summary>Внешний ключ на UserEntity.Id</summary>
         //[Column("user_id"), ForeignKey("users")]

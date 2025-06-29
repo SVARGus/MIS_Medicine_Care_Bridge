@@ -16,7 +16,7 @@
         /// <summary>Текст описания права, например: "CanViewPatients"</summary>
         //[Column("text")]
         //[Required]
-        public string Text { get; set; } = null!;
+        public string Text { get; set; } = string.Empty;
 
 
         /// <summary>Логическое значение: доступно/не доступно</summary>

@@ -7,10 +7,14 @@ namespace MedicineCareBridge.DataAccess.Configurations
     public class InsuranceDocumentConfiguration : IEntityTypeConfiguration<InsuranceDocumentEntity>
     {
         public void Configure(EntityTypeBuilder<InsuranceDocumentEntity> builder)
-        {
+        {            
             builder.ToTable("insurance_documents");
-            // Составной PK = (UserId, Num) либо по UserId
-            builder.HasKey(i => new { i.UserId, i.Num });
+            builder.HasKey(i => i.UserId);
+
+            builder.Property(p => p.DocumentName)
+                .HasColumnName("document_name")
+                .IsRequired()
+                .HasMaxLength(200);
 
             builder.Property(p => p.Num)
                 .HasColumnName("num");
