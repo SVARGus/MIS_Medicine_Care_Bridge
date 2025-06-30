@@ -18,10 +18,10 @@ namespace Domain.Entities
 
         /// <summary>Связь "многие-ко-многим" с пользователями через сущность <see cref="UserRole"/></summary>
         public IReadOnlyCollection<UserRole> UserRoles => _userRoles;
-        public readonly List<UserRole> _userRoles = new List<UserRole>();
+        private readonly List<UserRole> _userRoles = new List<UserRole>();
 
         /// <summary>Личные данные (таблица Data)</summary>
-        public PersonalData? PersonalData { get; private set; }
+        public PersonalData? PersonalData { get; private set; } = null;
 
         /// <summary>Связь "многие-ко-многим" с пользователем через сущность <see cref="UserDocumentType"/></summary>
         public IReadOnlyCollection<UserDocumentType> UserDocuments => _userDocuments;
@@ -48,7 +48,7 @@ namespace Domain.Entities
         /// Если <paramref name="login"/> пуст или не соответствует формату email/телефона,
         /// или <paramref name="password"/> == null.
         /// </exception>
-        public User(string login, Password password)
+        public User(string login, string password)
         {
             if (string.IsNullOrWhiteSpace(login))
             {
@@ -56,15 +56,18 @@ namespace Domain.Entities
             }
 
             // Валидация: либо email, либо телефон
-            var isEmail = Email.IsValid(login);
-            var isPhone = PhoneNumber.IsValid(login);
-            if (!isEmail && !isPhone)
+            if (!Email.IsValid(login) && !PhoneNumber.IsValid(login))
             {
                 throw new DomainException("Login должен быть корректным email или номером телефона.");
             }
 
+            if (string.IsNullOrWhiteSpace(password))
+            {
+                throw new DomainException("Password не может быть пустым.");
+            }
+
             Login = login;
-            Password = password ?? throw new DomainException("Password не может быть null.");
+            Password = new Password(password);
         }
 
         /// <summary>

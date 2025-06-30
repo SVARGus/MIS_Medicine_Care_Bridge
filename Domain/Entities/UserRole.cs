@@ -1,4 +1,6 @@
-﻿namespace Domain.Entities
+﻿using Domain.Exceptions;
+
+namespace Domain.Entities
 {
     /// <summary>
     /// Промежуточная сущность Пользователь - Роль
@@ -22,10 +24,19 @@
         /// Инициализирует новый экземпляр <see cref="UserRole"/>
         /// для связи Пользователь и роль.
         /// </summary>
-        /// <param name="userId">Индификатор пользователя.</param>
+        /// <param name="userId">Идентификатор пользователя.</param>
         /// <param name="roleId">Идентификатор роли.</param>
         public UserRole(int userId, int roleId)
         {
+            if (userId <= 0)
+            {
+                throw new DomainException("UserId должен быть положительным.");
+            }
+            if (roleId <= 0)
+            {
+                throw new DomainException("RoleId должен быть положительным.");
+            }
+
             UserId = userId;
             RoleId = roleId;
         }

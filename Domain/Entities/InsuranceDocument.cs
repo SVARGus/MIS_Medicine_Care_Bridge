@@ -30,7 +30,7 @@ namespace Domain.Entities
         /// Инициализирует новый экземпляр <see cref="InsuranceDocument"/>.
         /// </summary>
         /// <param name="documentName">Название документа (не может быть пустым).</param>
-        /// <param name="num">Номер документа (должен быть положительным).</param>
+        /// <param name="num">Номер документа (не может быть пустым).</param>
         /// <param name="userId">Идентификатор пользователя (должен быть положительным).</param>
         /// <param name="documentTypeId">Идентификатор типа документа (должен быть положительным).</param>
         /// <exception cref="DomainException">
@@ -41,15 +41,15 @@ namespace Domain.Entities
         ///   <item><description><paramref name="userId"/> или <paramref name="documentTypeId"/> &lt;= 0.</description></item>
         /// </list>
         /// </exception>
-        public InsuranceDocument(string documentName, int num, int userId, int documentTypeId)
+        public InsuranceDocument(string documentName, string num, int userId, int documentTypeId)
         {
             if (string.IsNullOrWhiteSpace(documentName))
             {
                 throw new DomainException("DocumentName не может быть пустым.");
             }
-            if (num <= 0)
+            if (string.IsNullOrWhiteSpace(num))
             {
-                throw new DomainException("Num должен быть положительным числом.");
+                throw new DomainException("Num не может быть пустым.");
             }
             if (userId <= 0)
             {
@@ -70,11 +70,11 @@ namespace Domain.Entities
         /// Обновляет номер документа.
         /// </summary>
         /// <param name="num">Новый номер (должен быть положительным).</param>
-        public void UpdateNum(int num)
+        public void UpdateNum(string num)
         {
-            if (num <= 0)
+            if (string.IsNullOrWhiteSpace(num))
             {
-                throw new DomainException("Num должен быть положительным числом.");
+                throw new DomainException("Num не может быть пустым.");
             }
 
             Num = num;

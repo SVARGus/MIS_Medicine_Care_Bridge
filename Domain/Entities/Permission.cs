@@ -18,7 +18,7 @@ namespace Domain.Entities
 
         /// <summary>Связь "многие-ко-многим" с ролями через сущность <see cref="RolePermission"/></summary>
         public IReadOnlyCollection<RolePermission> RolePermissions => _rolePermissions;
-        public List<RolePermission> _rolePermissions = new List<RolePermission>();
+        private readonly List<RolePermission> _rolePermissions = new List<RolePermission>();
 
         /// <summary>Конструктор для EF‑фреймворка.</summary>
         private Permission() { }
@@ -31,7 +31,7 @@ namespace Domain.Entities
         /// <exception cref="DomainException">Если <paramref name="text"/> == <c>null</c> или пустая строка.</exception>
         public Permission(string text, bool isAllowed)
         {
-            if (string.IsNullOrEmpty(text))
+            if (string.IsNullOrWhiteSpace(text))
             {
                 throw new DomainException("Text права не может быть пустым.");
             }

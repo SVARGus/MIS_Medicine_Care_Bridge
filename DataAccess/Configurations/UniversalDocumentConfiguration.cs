@@ -26,7 +26,8 @@ namespace MedicineCareBridge.DataAccess.Configurations
 
             builder.Property(ud => ud.Description)
                 .HasColumnName("description")
-                .HasMaxLength(500);
+                .HasMaxLength(500)
+                .IsRequired(false);
 
             builder.Property(ud => ud.DateOfIssue)
                 .HasColumnName("date_of_issue")

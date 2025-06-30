@@ -26,7 +26,7 @@ namespace Domain.Entities
         public DateTime DateOfBirth { get; private set; }
 
         /// <summary>Телефон</summary>
-        public PhoneNumber? Phone { get; private set; }
+        public PhoneNumber Phone { get; private set; }
          
         /// <summary>Email</summary>
         public Email? Email { get; private set; }
@@ -37,22 +37,25 @@ namespace Domain.Entities
         /// <summary>
         /// Инициализирует новые личные данные пользователя.
         /// </summary>
-        /// <param name="userId">Идентификатор пользователя.</param>
-        /// <param name="firstName">Имя (не пустое).</param>
-        /// <param name="lastName">Фамилия (не пустая).</param>
-        /// <param name="middleName">Отчество (может быть пустым).</param>
-        /// <param name="dateOfBirth">Дата рождения (должна быть в прошлом).</param>
-        /// <param name="phone">Номер телефона (может быть null).</param>
-        /// <param name="email">Email (может быть null).</param>
+        /// <param name="userId">Идентификатор пользователя (должен быть положительным).</param>
+        /// <param name="firstName">Имя пользователя (обязательное, не может быть пустым или состоять только из пробелов).</param>
+        /// <param name="lastName">Фамилия пользователя (обязательная, не может быть пустой или состоять только из пробелов).</param>
+        /// <param name="middleName">Отчество пользователя (может быть пустым или null; в этом случае будет заменено на пустую строку).</param>
+        /// <param name="dateOfBirth">Дата рождения пользователя (должна быть строго в прошлом).</param>
+        /// <param name="phone">Номер телефона пользователя (может быть null; если указан, должен быть в корректном формате).</param>
+        /// <param name="email">Email пользователя (может быть null или пустым; если указан, должен быть в корректном формате).</param>
         /// <exception cref="DomainException">
-        /// Выбрасывается при:
+        /// Выбрасывается в следующих случаях:
         /// <list type="bullet">
-        ///   <item><description>userId ≤ 0;</description></item>
-        ///   <item><description>firstName или lastName пусты;</description></item>
-        ///   <item><description>dateOfBirth ≥ сегодня;</description></item>
+        ///   <item><description><paramref name="userId"/> меньше или равен 0.</description></item>
+        ///   <item><description><paramref name="firstName"/> пустое или содержит только пробелы.</description></item>
+        ///   <item><description><paramref name="lastName"/> пустое или содержит только пробелы.</description></item>
+        ///   <item><description><paramref name="dateOfBirth"/> — сегодняшняя дата или дата из будущего.</description></item>
+        ///   <item><description><paramref name="phone"/> задан и не проходит валидацию.</description></item>
+        ///   <item><description><paramref name="email"/> задан и не проходит валидацию.</description></item>
         /// </list>
         /// </exception>
-        public PersonalData(int userId, string firstName, string lastName, string middleName, DateTime dateOfBirth, PhoneNumber phone, Email email)
+        public PersonalData(int userId, string firstName, string lastName, string middleName, DateTime dateOfBirth, string phone, string? email)
         {
             if (userId <= 0)
             {
@@ -70,14 +73,19 @@ namespace Domain.Entities
             {
                 throw new DomainException("DateOfBirth должна быть в прошлом.");
             }
+            if (!PhoneNumber.IsValid(phone))
+                throw new DomainException("Неверный формат номера телефона.");
+
+            if (!string.IsNullOrWhiteSpace(email) && !Email.IsValid(email))
+                throw new DomainException("Неверный формат email.");
 
             UserId = userId;
             FirstName = firstName;
             LastName = lastName;
-            MiddleName = middleName;
+            MiddleName = middleName?.Trim() ?? string.Empty;
             DateOfBirth = dateOfBirth;
-            Phone = phone;
-            Email = email;
+            Phone = new PhoneNumber(phone);
+            Email = string.IsNullOrWhiteSpace(email) ? null : new Email(email);
         }
 
         /// <summary>
@@ -126,18 +134,26 @@ namespace Domain.Entities
         /// Устанавливает или обновляет номер телефона.
         /// </summary>
         /// <param name="phone">Новый номер телефона.</param>
-        public void UpdatePhone(PhoneNumber? phone)
+        public void UpdatePhone(string phone)
         {
-            Phone = phone;
+            if (!PhoneNumber.IsValid(phone))
+            {
+                throw new DomainException("Неверный формат номера телефона.");
+            }
+            Phone = new PhoneNumber(phone);
         }
 
         /// <summary>
         /// Устанавливает или обновляет email.
         /// </summary>
         /// <param name="email">Новый email.</param>
-        public void UpdateEmail(Email? email)
+        public void UpdateEmail(string? email)
         {
-            Email = email;
+            if (!string.IsNullOrWhiteSpace(email) && !Email.IsValid(email))
+            {
+                throw new DomainException("Неверный формат email.");
+            }
+            Email = string.IsNullOrWhiteSpace(email) ? null : new Email(email);
         }
     }
 }

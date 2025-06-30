@@ -11,10 +11,10 @@ namespace MedicineCareBridge.DataAccess.Configurations
             builder.ToTable("user_document_types");
             builder.HasKey(udt => new { udt.UserId, udt.DocumentTypeId });
 
-            builder.Property(ur => ur.UserId)
+            builder.Property(udt => udt.UserId)
                 .HasColumnName("user_id");
 
-            builder.Property(ur => ur.DocumentTypeId)
+            builder.Property(udt => udt.DocumentTypeId)
                 .HasColumnName("document_type_id");
 
             builder.HasOne(udt => udt.User)

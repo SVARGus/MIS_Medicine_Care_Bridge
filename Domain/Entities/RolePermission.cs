@@ -1,4 +1,6 @@
-﻿namespace Domain.Entities
+﻿using Domain.Exceptions;
+
+namespace Domain.Entities
 {
     /// <summary>
     /// Промежуточная сущность «Роль–Право»
@@ -26,6 +28,15 @@
         /// <param name="permissionId">Идентификатор права.</param>
         public RolePermission(int roleId, int permissionId)
         {
+            if (roleId <= 0)
+            {
+                throw new DomainException("RoleId должен быть положительным.");
+            }
+            if (permissionId <= 0)
+            {
+                throw new DomainException("PermissionId должен быть положительным.");
+            }
+
             RoleId = roleId;
             PermissionId = permissionId;
         }

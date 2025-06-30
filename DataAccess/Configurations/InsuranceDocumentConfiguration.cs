@@ -17,13 +17,18 @@ namespace MedicineCareBridge.DataAccess.Configurations
                 .HasMaxLength(200);
 
             builder.Property(p => p.Num)
-                .HasColumnName("num");
+                .HasColumnName("num")
+                .IsRequired()
+                .HasMaxLength(50);
 
             builder.Property(p => p.UserId)
                 .HasColumnName("user_id");
 
             builder.Property(p => p.DocumentTypeId)
                 .HasColumnName("document_type_id");
+
+            builder.HasIndex(dt => dt.Num)
+                .IsUnique();
 
             builder.HasOne(i => i.User)
                 .WithOne(u => u.InsuranceDocument)

@@ -66,6 +66,10 @@ namespace Domain.Entities
             {
                 throw new DomainException("DateOfIssue должен быть задан.");
             }
+            if (dateOfIssue > DateTime.UtcNow)
+            {
+                throw new DomainException("DateOfIssue не может быть в будущем.");
+            }
             if (userId <= 0)
             {
                 throw new DomainException("UserId должен быть положительным.");
