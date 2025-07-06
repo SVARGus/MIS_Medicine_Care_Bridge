@@ -15,7 +15,7 @@ namespace Domain.Entities
 
         /// <summary>Связь "многие-ко-многим" с пользователем через сущность <see cref="UserDocumentType"/></summary>
         public IReadOnlyCollection<UserDocumentType> UserDocuments => _userDocuments;
-        public List<UserDocumentType> _userDocuments = new List<UserDocumentType>();
+        private readonly List<UserDocumentType> _userDocuments = new List<UserDocumentType>();
 
         /// <summary>Конструктор для EF‑фреймворка.</summary>
         private DocumentType() { }
@@ -27,11 +27,16 @@ namespace Domain.Entities
         /// <exception cref="DomainException">Если название типа пустое или состоит только из пробелов.</exception>
         public DocumentType(string nameType)
         {
-            if (string.IsNullOrEmpty(nameType))
+            if (string.IsNullOrWhiteSpace(nameType))
             {
                 throw new DomainException("Название типа документа обязательно.");
             }
             NameType = nameType;
+        }
+
+        public void AddUserDocument(UserDocumentType userDocument)
+        {
+            _userDocuments.Add(userDocument);
         }
     }
 }

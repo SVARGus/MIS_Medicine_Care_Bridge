@@ -19,6 +19,9 @@ namespace MedicineCareBridge.DataAccess.Configurations
                 .IsRequired()
                 .HasMaxLength(100);
 
+            builder.HasIndex(dt => dt.NameType)
+                .IsUnique();
+
             // Связь m:n с UserEntity через UserDocumentTypeEntity
             builder.HasMany(dt => dt.UserDocumentTypes)
                 .WithOne(udt => udt.DocumentType)

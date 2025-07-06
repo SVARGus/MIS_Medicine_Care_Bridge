@@ -18,7 +18,7 @@ namespace Domain.Entities
 
         /// <summary>Связь "многие-ко-многим" с пользователями через сущность <see cref="UserRole"/></summary>
         public IReadOnlyCollection<UserRole> UserRoles => _userRoles;
-        public readonly List<UserRole> _userRoles = new List<UserRole>();
+        private readonly List<UserRole> _userRoles = new List<UserRole>();
 
         /// <summary>Связь "многие-ко-многим" с правами через <see cref="RolePermission"/></summary>
         public IReadOnlyCollection<RolePermission> RolePermissions => _rolePermissions;
@@ -54,6 +54,11 @@ namespace Domain.Entities
         /// <param name="permissionId">Идентификатор права.</param>
         public void AddPermission(int permissionId)
         {
+            if (Id == 0)
+            {
+                throw new DomainException("Нельзя назначать права до присвоения роли идентификатора.");
+            }
+
             if (_rolePermissions.Any(rp => rp.PermissionId == permissionId))
             {
                 return;
@@ -69,6 +74,11 @@ namespace Domain.Entities
         /// <exception cref="DomainException">Если эта роль уже назначена пользователю.</exception>
         public void AssignToUser(int userId)
         {
+            if (Id == 0)
+            {
+                throw new DomainException("Нельзя назначать права до присвоения роли идентификатора.");
+            }
+
             if (_userRoles.Any(ur => ur.UserId == userId))
             {
                 throw new DomainException($"Роль '{NameEng}' уже назначена пользователю с ID {userId}.");

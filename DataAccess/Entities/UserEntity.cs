@@ -3,23 +3,15 @@
     /// <summary>
     /// Таблица users (пользователи)
     /// </summary>
-    //[Table("users")]
-    //[PrimaryKey(nameof(Id))]
     public class UserEntity
     {
         /// <summary>Уникальный идентификатор</summary>
-        //[Column("id")]
-        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         /// <summary>Логин (email или телефон)</summary>
-        //[Column("login")]
-        //[Required]
         public string Login { get; set; } = null!;
 
         /// <summary>Пароль (хранится хешированной строкой)</summary>
-        //[Column("password")]
-        //[Required]
         public string Password { get; set; } = null!;
 
         // Навигационные свойства:

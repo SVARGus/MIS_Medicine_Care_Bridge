@@ -30,7 +30,7 @@ namespace MedicineCareBridge.DataAccess.Configurations
                 .HasMaxLength(50);
 
             builder.Property(bd => bd.DateOfBirth)
-                .HasColumnName("dste_of_birth")
+                .HasColumnName("date_of_birth")
                 .IsRequired();
 
             builder.Property(pd => pd.Phone)
@@ -40,7 +40,6 @@ namespace MedicineCareBridge.DataAccess.Configurations
 
             builder.Property(pd => pd.Email)
                 .HasColumnName("email")
-                .IsRequired()
                 .HasMaxLength(100);
 
             // 1:1 с UserEntity

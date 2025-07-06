@@ -12,7 +12,7 @@ namespace Domain.Entities
         public string DocumentName { get; private set; } = string.Empty;
 
         /// <summary>Номер СНИЛС (11 цифр)</summary>
-        public string Num { get; private set; } = string.Empty; // Надо в остальных проектах поправить с int на string
+        public string NumSnils { get; private set; } = string.Empty; // Надо в остальных проектах поправить с int на string
 
         /// <summary>Внешний ключ на <see cref="User.Id"/></summary>
         public int UserId { get; private set; }
@@ -31,17 +31,17 @@ namespace Domain.Entities
         /// Инициализирует новый экземпляр <see cref="Snils"/>.
         /// </summary>
         /// <param name="documentName">Название документа (не может быть пустым).</param>
-        /// <param name="num">Номер СНИЛС из 11 цифр.</param>
+        /// <param name="numSnils">Номер СНИЛС из 11 цифр.</param>
         /// <param name="userId">Идентификатор пользователя.</param>
         /// <param name="documentTypeId">Идентификатор типа документа.</param>
         /// <exception cref="DomainException">Если параметры не корректны</exception>
-        public Snils(string documentName, string num, int userId, int documentTypeId)
+        public Snils(string documentName, string numSnils, int userId, int documentTypeId)
         {
             if (string.IsNullOrWhiteSpace(documentName))
             {
                 throw new DomainException("DocumentName не может быть пустым.");
             }
-            if (!Regex.IsMatch(num, "^\\d{11}$"))
+            if (!Regex.IsMatch(numSnils, "^\\d{11}$"))
             {
                 throw new DomainException("Num должен содержать ровно 11 цифр для СНИЛС.");
             }
@@ -55,7 +55,7 @@ namespace Domain.Entities
             }
 
             DocumentName = documentName;
-            Num = num;
+            NumSnils = numSnils;
             UserId = userId;
             DocumentTypeId = documentTypeId;
         }

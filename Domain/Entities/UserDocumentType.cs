@@ -1,4 +1,6 @@
-﻿namespace Domain.Entities
+﻿using Domain.Exceptions;
+
+namespace Domain.Entities
 {
     /// <summary>
     /// Промежуточная сущность «Пользователь–Документ» (UserId, DocumentTypeId)
@@ -22,10 +24,19 @@
         /// Инициализирует новый экземпляр <see cref="UserDocumentType"/>
         /// для связи Пользователь и документ.
         /// </summary>
-        /// <param name="userId">Индификатор пользователя.</param>
-        /// <param name="docTypeId">Индификатор документа.</param>
+        /// <param name="userId">Индентификатор пользователя.</param>
+        /// <param name="docTypeId">Индентификатор документа.</param>
         public UserDocumentType(int userId, int docTypeId)
         {
+            if (userId <= 0)
+            {
+                throw new DomainException("UserId должен быть положительным.");
+            }
+            if (docTypeId <= 0)
+            {
+                throw new DomainException("DocumentTypeId должен быть положительным.");
+            }
+
             UserId = userId;
             DocumentTypeId = docTypeId;
         }

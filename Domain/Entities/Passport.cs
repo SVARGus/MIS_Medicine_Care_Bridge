@@ -36,7 +36,7 @@ namespace Domain.Entities
         /// Инициализирует новый экземпляр <see cref="Passport"/>.
         /// </summary>
         /// <param name="documentName">Название документа (не может быть пустым).</param>
-        /// <param name="num">Номер паспорта (не может быть пустым).</param>
+        /// <param name="passportNum">Номер паспорта (не может быть пустым).</param>
         /// <param name="userId">Идентификатор пользователя.</param>
         /// <param name="info">Дополнительная информация (не обязательна).</param>
         /// <param name="dateOfIssue">Дата выдачи (не позже текущей даты).</param>
@@ -67,9 +67,43 @@ namespace Domain.Entities
             DocumentName = documentName;
             PassportNum = passportNum;
             UserId = userId;
-            Info = info;
+            Info = info ?? string.Empty;
             DateOfIssue = dateOfIssue;
             DocumentTypeId = documentTypeId;
+        }
+
+        /// <summary>
+        /// Обновляет дополнительной информации о паспорте.
+        /// </summary>
+        public void UpdateInfo(string info)
+        {
+            Info = info ?? string.Empty;
+        }
+
+        /// <summary>
+        /// Обновляет название документа (паспорта).
+        /// </summary>
+        /// <param name="documentName">Название документа (не может быть пустым).</param>
+        public void UpdateDocumentName(string documentName)
+        {
+            if (string.IsNullOrWhiteSpace(documentName))
+            {
+                throw new DomainException("DocumentName не может быть пустым.");
+            }
+            DocumentName = documentName;
+        }
+
+        /// <summary>
+        /// Обновляет номера документа (паспорта).
+        /// </summary>
+        /// <param name="passportNum">Номер паспорта (не может быть пустым).</param>
+        public void UpdatePassportNum(string passportNum)
+        {
+            if (string.IsNullOrWhiteSpace(passportNum))
+            {
+                throw new DomainException("PassportNum не может быть пустым.");
+            }
+            PassportNum = passportNum;
         }
     }
 }

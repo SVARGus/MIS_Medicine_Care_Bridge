@@ -11,8 +11,15 @@ namespace MedicineCareBridge.DataAccess.Configurations
             builder.ToTable("snils");
             builder.HasKey(s => s.NumSnils);
 
+            builder.Property(p => p.DocumentName)
+                .HasColumnName("document_name")
+                .HasMaxLength(100)
+                .IsRequired();
+
             builder.Property(p => p.NumSnils)
-                .HasColumnName("num_snils");
+                .HasColumnName("num_snils")
+                .HasMaxLength(11)
+                .IsRequired();
 
             builder.Property(p => p.UserId)
                 .HasColumnName("user_id");
