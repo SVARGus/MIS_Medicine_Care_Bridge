@@ -8,7 +8,7 @@ namespace MedicineCareBridge.DataAccess.Extensions
     /// </summary>
     public static class ModelBuilderExtensions
     {
-        public static void ApplyAllConfigurations(this ModelBuilder modelBuilder)
+        public static void ApplyAllConfigurations(this ModelBuilder modelBuilder, Assembly assembly)
         {
             // Ищем все типы, реализующие IEntityTypeConfiguration<T>
             var applyGenericMethod = typeof(ModelBuilder)
@@ -17,7 +17,7 @@ namespace MedicineCareBridge.DataAccess.Extensions
                     m.Name == nameof(ModelBuilder.ApplyConfiguration)
                     && m.GetParameters().Length == 1);
 
-            var typesToRegister = Assembly.GetExecutingAssembly().GetTypes()
+            var typesToRegister = assembly.GetTypes()
                 .Where(t => !t.IsAbstract && !t.IsGenericTypeDefinition)
                 .Where(t =>
                     t.GetInterfaces().Any(i =>

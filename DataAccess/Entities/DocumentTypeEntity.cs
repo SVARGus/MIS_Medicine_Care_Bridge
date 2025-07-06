@@ -3,8 +3,6 @@
     /// <summary>
     /// Справочник типов документов (document_type)
     /// </summary>
-    //[Table("document_type")]
-    //[PrimaryKey(nameof(Id))]
     public class DocumentTypeEntity
     {
         /// <summary>Уникальный идентификатор</summary>

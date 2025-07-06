@@ -30,7 +30,7 @@ namespace MedicineCareBridge.DataAccess
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Автоматически применяем все конфигурации из папки Configurations
-            modelBuilder.ApplyAllConfigurations();
+            modelBuilder.ApplyAllConfigurations(typeof(MedicineCareBridgeDbContext).Assembly);
 
             base.OnModelCreating(modelBuilder);
         }

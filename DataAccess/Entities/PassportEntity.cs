@@ -6,7 +6,7 @@
     public class PassportEntity
     {
         /// <summary>Название документа, соответствет типу документа (на русском)</summary>
-        public string DocumentName { get; private set; } = string.Empty;
+        public string DocumentName { get; set; } = string.Empty;
 
         /// <summary>Номер паспорта</summary>
         public string PassportNum { get; set; } = string.Empty;
