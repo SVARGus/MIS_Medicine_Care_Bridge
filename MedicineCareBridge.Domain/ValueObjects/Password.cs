@@ -1,7 +1,7 @@
 ﻿using System.Text.RegularExpressions;
-using Domain.Exceptions;
+using MedicineCareBridge.Domain.Exceptions;
 
-namespace Domain.ValueObjects
+namespace MedicineCareBridge.Domain.ValueObjects
 {
     /// <summary>
     /// Представляет объект‑значение для пароля с валидацией по строгим правилам.

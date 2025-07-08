@@ -1,6 +1,6 @@
-﻿using Domain.Exceptions;
+﻿using MedicineCareBridge.Domain.Exceptions;
 
-namespace Domain.Entities
+namespace MedicineCareBridge.Domain.Entities
 {
     /// <summary>
     /// Универсальный документ (таблица UniversalDocument)

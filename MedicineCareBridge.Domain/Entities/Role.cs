@@ -1,6 +1,6 @@
-﻿using Domain.Exceptions;
+﻿using MedicineCareBridge.Domain.Exceptions;
 
-namespace Domain.Entities
+namespace MedicineCareBridge.Domain.Entities
 {
     /// <summary>
     /// Роль пользователя (например <c>Admin</c>, <c>Visitor</c>, <c>Patient</c>)
@@ -64,7 +64,7 @@ namespace Domain.Entities
                 return;
             }
 
-            _rolePermissions.Add(new RolePermission(this.Id, permissionId));
+            _rolePermissions.Add(new RolePermission(Id, permissionId));
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace Domain.Entities
                 throw new DomainException($"Роль '{NameEng}' уже назначена пользователю с ID {userId}.");
             }
 
-            _userRoles.Add(new UserRole(userId, this.Id));
+            _userRoles.Add(new UserRole(userId, Id));
         }
     }
 }

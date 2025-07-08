@@ -1,6 +1,6 @@
-﻿using Domain.Exceptions;
+﻿using MedicineCareBridge.Domain.Exceptions;
 
-namespace Domain.Entities
+namespace MedicineCareBridge.Domain.Entities
 {
     /// <summary>
     /// Права пользователей (например: "Изменение данных пользователя", "изменение расписания" и другие)
@@ -55,7 +55,7 @@ namespace Domain.Entities
                 throw new DomainException($"Право '{Text}' уже выдано роли с Id={roleId}. Текущее состояние IsAllowed={IsAllowed}.");
             }
 
-            _rolePermissions.Add(new RolePermission(roleId, this.Id));
+            _rolePermissions.Add(new RolePermission(roleId, Id));
         }
 
         /// <summary>

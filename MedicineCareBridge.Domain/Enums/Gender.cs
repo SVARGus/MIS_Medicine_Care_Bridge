@@ -1,4 +1,4 @@
-﻿namespace Domain.Enums
+﻿namespace MedicineCareBridge.Domain.Enums
 {
     /// <summary>
     /// Пол пользователя: Неопределен, Мужчина, Женщина, другой

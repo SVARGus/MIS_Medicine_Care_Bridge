@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicineCareBridge.DataAcce
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicineCareBridge.Client", "MedicineCareBridge.Client\MedicineCareBridge.Client.csproj", "{A7578DA9-65A4-4E74-A053-CEC4E634DCA2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{4A186A47-A33A-425F-8254-143DA6A7F61E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicineCareBridge.Domain", "MedicineCareBridge.Domain\MedicineCareBridge.Domain.csproj", "{4A186A47-A33A-425F-8254-143DA6A7F61E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicineCareBridge.Shared", "MedicineCareBridge.Shared\MedicineCareBridge.Shared.csproj", "{135BDBFE-40A7-4843-AD4A-DA6130B0F1AF}"
 EndProject

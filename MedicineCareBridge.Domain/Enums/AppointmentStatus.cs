@@ -1,4 +1,4 @@
-﻿namespace Domain.Enums
+﻿namespace MedicineCareBridge.Domain.Enums
 {
     /// <summary>
     /// Стпатус встречи (приема врача): Запланирован, Завершен, Отменен

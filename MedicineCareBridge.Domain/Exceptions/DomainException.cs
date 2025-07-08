@@ -1,4 +1,4 @@
-﻿namespace Domain.Exceptions
+﻿namespace MedicineCareBridge.Domain.Exceptions
 {
     /// <summary>
     /// Базовое доменное исключение - можно ловить сразу все DomainException'ы, или переопределять для конкретных кейсов.

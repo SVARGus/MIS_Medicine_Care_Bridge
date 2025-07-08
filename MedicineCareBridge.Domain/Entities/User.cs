@@ -1,7 +1,7 @@
-﻿using Domain.Exceptions;
-using Domain.ValueObjects;
+﻿using MedicineCareBridge.Domain.Exceptions;
+using MedicineCareBridge.Domain.ValueObjects;
 
-namespace Domain.Entities
+namespace MedicineCareBridge.Domain.Entities
 {
     /// <summary>
     /// Пользователь системы
@@ -109,7 +109,7 @@ namespace Domain.Entities
                 throw new DomainException($"Роль с Id={roleId} уже назначена пользователю {Id}.");
             }
 
-            _userRoles.Add(new UserRole(this.Id, roleId));
+            _userRoles.Add(new UserRole(Id, roleId));
         }
 
         /// <summary>
@@ -144,7 +144,7 @@ namespace Domain.Entities
             {
                 return;
             }
-            _userDocuments.Add(new UserDocumentType(this.Id, documentTypeId));
+            _userDocuments.Add(new UserDocumentType(Id, documentTypeId));
         }
 
         /// <summary>

@@ -1,6 +1,6 @@
-﻿using Domain.Exceptions;
+﻿using MedicineCareBridge.Domain.Exceptions;
 
-namespace Domain.Entities
+namespace MedicineCareBridge.Domain.Entities
 {
     /// <summary>
     /// Тип документов (например, «ИНН», «Диплом», «СНИЛС» и т.п.)

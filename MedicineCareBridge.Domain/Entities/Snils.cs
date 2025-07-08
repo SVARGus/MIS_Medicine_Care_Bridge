@@ -1,7 +1,7 @@
-﻿using Domain.Exceptions;
+﻿using MedicineCareBridge.Domain.Exceptions;
 using System.Text.RegularExpressions;
 
-namespace Domain.Entities
+namespace MedicineCareBridge.Domain.Entities
 {
     /// <summary>
     /// СНИЛС

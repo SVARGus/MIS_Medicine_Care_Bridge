@@ -1,7 +1,7 @@
-﻿using Domain.ValueObjects;
-using Domain.Exceptions;
+﻿using MedicineCareBridge.Domain.Exceptions;
+using MedicineCareBridge.Domain.ValueObjects;
 
-namespace Domain.Entities
+namespace MedicineCareBridge.Domain.Entities
 {
     /// <summary>
     /// «Личные данные» пользователя (таблица Data)
