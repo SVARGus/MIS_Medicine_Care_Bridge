@@ -27,9 +27,9 @@
         public string LastName { get; set; } = null!;
 
         /// <summary>
-        /// Отчество пользователя (необязательное).
+        /// Отчество пользователя.
         /// </summary>
-        public string? MiddleName { get; set; }
+        public string MiddleName { get; set; } = null!;
 
         /// <summary>
         /// Дата рождения пользователя.
@@ -42,8 +42,8 @@
         public string Phone { get; set; } = null!;
 
         /// <summary>
-        /// Электронная почта пользователя (необязательное).
+        /// Электронная почта пользователя.
         /// </summary>
-        public string? Email { get; set; }
+        public string Email { get; set; } = null!;
     }
 }
