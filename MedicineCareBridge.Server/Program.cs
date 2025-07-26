@@ -1,17 +1,13 @@
 using MedicineCareBridge.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using MedicineCareBridge.Server.Mappings;
-using MedicineCareBridge.Server.Services.Interfaces;
-using MedicineCareBridge.Server.Services.Implementations;
 using MedicineCareBridge.Server.Extensions;
 //using MedicineCareBridge.Server.Middlewares;
-using MedicineCareBridge.DataAccess.Repositories.Interfaces;
-using MedicineCareBridge.DataAccess.Repositories.Implementations;
 using MedicineCareBridge.DataAccess.Extensions;
 using Microsoft.OpenApi.Models; // Swagger-конфигурация для документирования API модели
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Extensions.DependencyInjection;         // для расширений AddSwaggerGen и AddAuthentication
-using Microsoft.OpenApi.Models;                        // для OpenApiInfo
+//using Microsoft.Extensions.DependencyInjection;         // для расширений AddSwaggerGen и AddAuthentication
+//using Microsoft.OpenApi.Models;                        // для OpenApiInfo
 
 var builder = WebApplication.CreateBuilder(args);
 
