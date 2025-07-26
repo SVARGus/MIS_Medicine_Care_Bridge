@@ -1,11 +1,13 @@
 using MedicineCareBridge.DataAccess;
-using Microsoft.EntityFrameworkCore;
-using MedicineCareBridge.Server.Mappings;
-using MedicineCareBridge.Server.Extensions;
 //using MedicineCareBridge.Server.Middlewares;
 using MedicineCareBridge.DataAccess.Extensions;
-using Microsoft.OpenApi.Models; // Swagger-конфигурация для документирования API модели
+using MedicineCareBridge.Server.Configuration;
+using MedicineCareBridge.Server.Extensions;
+using MedicineCareBridge.Server.Mappings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using Microsoft.OpenApi.Models; // Swagger-конфигурация для документирования API модели
 //using Microsoft.Extensions.DependencyInjection;         // для расширений AddSwaggerGen и AddAuthentication
 //using Microsoft.OpenApi.Models;                        // для OpenApiInfo
 
@@ -40,6 +42,12 @@ builder.Services.AddDbContext<MedicineCareBridgeDbContext>(options =>
 
 // 4. AutoMapper
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
+
+// 4.5. Конфигурация JWT Settings
+builder.Services.Configure<JwtSettings>(configuration.GetSection("Jwt"));
+// и если AuthService принимает не IOptions<JwtSettings>, а напрямую JwtSettings:
+builder.Services.AddSingleton(sp =>
+    sp.GetRequiredService<IOptions<JwtSettings>>().Value);
 
 // 5. Аутентификация / JWT
 builder.Services

@@ -1,13 +1,14 @@
-﻿using MedicineCareBridge.Server.Services.Interfaces;
-using MedicineCareBridge.Shared.DTO.Auth;
+﻿using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using AutoMapper;
 using MedicineCareBridge.DataAccess.Repositories.Interfaces;
 using MedicineCareBridge.Domain.Entities;
-using AutoMapper;
 using MedicineCareBridge.Server.Configuration; // класс с настройками JWT
-using System.IdentityModel.Tokens.Jwt;
+using MedicineCareBridge.Server.Services.Interfaces;
+using MedicineCareBridge.Shared.DTO.Auth;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using System.Security.Claims;
 
 namespace MedicineCareBridge.Server.Services.Implementations
 {
@@ -22,12 +23,12 @@ namespace MedicineCareBridge.Server.Services.Implementations
             IUserRepository userRepo,
             IPersonalDataRepository pdRepo,
             IMapper mapper,
-            JwtSettings jwt)
+            IOptions<JwtSettings> jwtOptions)
         {
             _userRepo = userRepo;
             _pdRepo = pdRepo;
             _mapper = mapper;
-            _jwt = jwt;
+            _jwt = jwtOptions.Value;
         }
 
         public async Task<LoginResponseDto> AuthenticateAsync(LoginRequestDto dto)
