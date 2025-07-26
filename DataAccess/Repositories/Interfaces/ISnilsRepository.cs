@@ -5,6 +5,7 @@ namespace MedicineCareBridge.DataAccess.Repositories.Interfaces
     public interface ISnilsRepository
     {
         Task<SnilsEntity?> GetByNumAsync(string numSnils);
+        Task<SnilsEntity?> GetByUserIdAsync(int userId);
         Task<List<SnilsEntity>> GetAllAsync();
         Task AddAsync(SnilsEntity entity);
         Task UpdateAsync(SnilsEntity entity);
