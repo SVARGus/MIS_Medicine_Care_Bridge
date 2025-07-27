@@ -19,6 +19,11 @@ namespace MedicineCareBridge.DataAccess.Repositories.Implementations
                 .FirstOrDefaultAsync(s => s.NumSnils == numSnils);
         }
 
+        public Task<SnilsEntity?> GetByUserIdAsync(int userId)
+        => _context.Snils
+                   .AsNoTracking()
+                   .FirstOrDefaultAsync(x => x.UserId == userId);
+
         public async Task<List<SnilsEntity>> GetAllAsync()
         {
             return await _context.Snils

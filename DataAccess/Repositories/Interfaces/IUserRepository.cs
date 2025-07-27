@@ -14,5 +14,7 @@ namespace MedicineCareBridge.DataAccess.Repositories.Interfaces
         // Дополнительные методы
         Task<UserEntity?> GetByLoginAsync(string login);
         Task<List<UserEntity>> GetPagedAsync (int page, int pageSize);
+        Task AssignRoleAsync(int userId, int roleId);
+        Task ReplaceRolesAsync(int userId, IEnumerable<int> roleIds);
     }
 }

@@ -81,6 +81,27 @@ namespace MedicineCareBridge.DataAccess.Repositories.Implementations
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
-        }       
+        }
+
+        public async Task AssignRoleAsync(int userId, int roleId)
+        {
+            if (!await ExistsAsync(userId))
+                throw new KeyNotFoundException($"User {userId} not found");
+
+            var link = new UserRoleEntity { UserId = userId, RoleId = roleId };
+            _context.UserRoles.Add(link);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task ReplaceRolesAsync(int userId, IEnumerable<int> roleIds)
+        {
+            var old = _context.UserRoles.Where(ur => ur.UserId == userId);
+            _context.UserRoles.RemoveRange(old);
+
+            var links = roleIds.Select(rid => new UserRoleEntity { UserId = userId, RoleId = rid });
+            await _context.UserRoles.AddRangeAsync(links);
+
+            await _context.SaveChangesAsync();
+        }
     }
 }
